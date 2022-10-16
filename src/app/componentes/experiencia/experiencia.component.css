@@ -1,0 +1,56 @@
+article{
+    background: linear-gradient(165deg,#00dad6,#32d1dc,#FF7cae,#95a,#02f380,#161569,#5a4894,#95a,#FF7cae);
+    background-size: 450%;
+
+}
+.card-title h1{
+    flex:7;
+    }
+.card-title{
+    display: flex; 
+}
+.card-title h1{
+    
+    
+text-align: center;
+text-decoration: 50pt;
+    
+    
+}
+.card-title h2{
+flex:10;
+}
+.title-button{
+    display:flex;
+}
+
+.card-title .title-button{
+    flex: 2;
+
+}
+.card-lista {
+    display:flex;
+}
+.card-lista{
+    font-style: italic;
+}
+.card-lista {
+    flex:10;
+}
+
+.card-body{
+    display: flex;
+}
+.data-container .data-control .button-editar{
+    margin-right: auto;
+    margin-left: auto;
+}
+.card-body .div data-control{
+    display: flex;
+}
+.data-container .data-control .button-editar{
+    display:flex;
+}
+.data-container .data-control .button-editar{
+    flex:3;
+}

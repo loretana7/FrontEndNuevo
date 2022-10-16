@@ -1,0 +1,125 @@
+<article class="card">
+<div class="modal fade" id="AcercaDeForm" tabindex="-1" aria-labelledby="AcercaDeFormLabel" aria-hidden="true">
+   <div class="modal-dialog">
+     <div class="modal-content">
+       <div class="modal-header">
+         <h5 class="modal-title" id="AcercaDeFormLabel"> AcercaDeMi</h5>
+         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Cerrar"></button>
+       </div>
+       <div class="modal-body">
+         <form [formGroup]="AcercaDeForm" (ngSubmit)="onSubmit()">
+
+           <input type="hidden" name="id" formControlName="id" >
+           <div class="row mb-3">
+            <label for="apellido" class=" col-form-label">Apellido</label>
+            <div class="col-sm-10">
+               <input type="text" name="apellido" formControlName="apellido" class="form-control"   [ngClass]="{'is-invalid': Apellido?.errors && Apellido?.touched, 'is-valid': !Apellido?.errors && Apellido?.touched }" required >
+                <span *ngIf="AcercaDeForm.get('apellido')?.errors?.['minlength'] && Apellido?.touched
+                "class =" text-danger"> al menos 4 digitos, porfavor</span> 
+            </div> 
+           <div class="row mb-3">
+             <label for="nombre" class=" col-form-label">Nombre</label>
+             <div class="col-sm-10">
+                 <input type="text" name="nombre" formControlName="nombre" class="form-control"  [ngClass]="{'is-invalid': Nombre?.errors && Nombre?.touched, 'is-valid': !Nombre?.errors && Nombre?.touched }"  required>
+                 <span *ngIf="AcercaDeForm.get('nombre')?.errors?.['minlength'] && Nombre?.touched
+                   "class =" text-danger"> al menos 3 digitos, porfavor</span> 
+             </div>
+           </div>
+           </div>
+          <!-- </div> aca creo debe ir un cierre div-->
+           <div class="row mb-3">
+             <label for="edad" class=" col-form-label">Edad</label>
+              <div class="col-sm-10">
+                 <input type="text" name="edad" formControlName="edad" class="form-control"  [ngClass]="{'is-invalid': Edad?.errors && Edad?.touched, 'is-valid': !Edad?.errors && Edad?.touched }"  required>
+                 <span *ngIf="AcercaDeForm.get('edad')?.errors?.['pattern'] && Edad?.touched || AcercaDeForm.get('edad')?.errors?.['min'] || AcercaDeForm.get('edad')?.errors?.['max']
+                  "class =" text-danger"> solo permite numeros del 0 al 100 y no se permiten letras</span> 
+             </div>
+           </div>
+           <div class="row mb-3">
+             <label for="informacion" class=" col-form-label">Informacion</label>
+               <div class="col-sm-10">
+                 <input type="text" name="informacion" formControlName="informacion" class="form-control"   [ngClass]="{'is-invalid': Informacion?.errors && Informacion?.touched, 'is-valid': !Informacion?.errors && Informacion?.touched }" required >
+                 <span *ngIf="AcercaDeForm.get('informacion')?.errors?.['minlength'] && Informacion?.touched
+                 "class =" text-danger"> al menos 5 digitos, porfavor</span> 
+              </div>
+           </div>
+           <div class="row mb-3">
+            <label for="email" class=" col-form-label">Email </label>
+            <div class="col-sm-10">
+            <input type="text" placeholder="ingrese el email" name="email" formControlName = "email" class="form-control" required [ngClass]="{'is-invalid': Email?.errors && Email?.touched, 'is-valid': !Email?.errors && Email?.touched }">
+            <div *ngIf="Email?.errors && Email?.touched">
+                <span *ngIf ="Email?.hasError('required')" class ="text-danger">El email es necesario</span>
+                <span *ngIf ="Email?.hasError('email')" class ="text-danger">No es un email valido</span>
+            
+               </div>
+            </div>
+        </div>
+           <div class="mb-3">
+             <label for="titulo" class="col-form-label">Titulo</label>
+               <div class="col-sm-10">
+                 <input type="text" name="titulo" formControlName="titulo" class="form-control"   [ngClass]="{'is-invalid': Titulo?.errors && Titulo?.touched, 'is-valid': !Titulo?.errors && Titulo?.touched }" required>
+                 <span *ngIf="AcercaDeForm.get('titulo')?.errors?.['minlength'] && Titulo?.touched
+                  "class =" text-danger"> al menos 5 caracteres, porfavor</span> 
+              </div>
+           </div>
+           <div class="mb-3">
+            <label for="img" class=" col-form-label">Imagen</label>
+             <div class="col-sm-10">
+               <input type="text" name="img" formControlName="img" class="form-control" >
+             </div>
+          </div>
+           <div class="text-center">
+             <button type="button" class="btn btn-secondary me-4 " data-bs-dismiss="modal">Cerrar</button>
+             <button [disabled]="AcercaDeForm.invalid" type="submit" class="btn btn-primary">Guardar cambios</button>
+           </div>
+
+         </form>
+       </div>
+     </div>
+   </div>
+  </div>
+      
+  <div class="data-container">   
+            <div class="card-title">
+              <h1 > Acerca de mi</h1>
+            </div>
+            <div class = "container">
+              <div *ngIf="Vacia()==true" class="button-editar">
+                <div  class="buton-editar">
+                  <button class="btn btn-success" data-bs-toggle="modal" data-bs-target="#AcercaDeForm" (click)="NuevaAcercaDe()" ><i class="bi bi-plus-circle-fill "> no existen datos acerca de mi cree uno</i></button>
+              </div>
+              </div>
+                <ul *ngFor="let acercaDe of acercaDeList ; let i = index">
+                       <div class="row" class="card-lista  ">
+                        <div class="card-img-top" class="col-xs-12 col-sm-2 col-md-2 col-lg-2" >
+                          <img class="img-fluid" src="/assets/images/{{acercaDe.img}}" whidth="150" height="150"  alt="" class="border border-info border-5 rounded-circle " >
+                         </div>
+                             <div class="col-xs-12 col-sm-2 col-md-2 col-lg-2">
+                                <h4 id="nombre"  class="mr-3" >{{acercaDe.nombre}} {{acercaDe.apellido}} </h4>
+                                
+                                <h5 class="mr-3" > <b> {{acercaDe.titulo}}</b></h5>
+                              </div> 
+                              <div class="row-xs-12 row-sm-5 row-md-5 row-lg-5" >
+                                <p>Sobre mi</p> 
+                                <p class="mr-3" > {{acercaDe.informacion}}</p>
+                              </div>
+                             
+                            <div *ngIf="isUserLogged" class="button-editar">
+                            <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#AcercaDeForm" (click)="EditarAcercaDe(i)" ><i class="bi bi-pencil-fill"></i></button>
+                          </div>
+                     
+          
+                  <div *ngIf="isUserLogged" class="data-control">
+                      <div  class="buton-editar">
+                         <button class="btn btn-success" data-bs-toggle="modal" data-bs-target="#AcercaDeForm" (click)="NuevaAcercaDe()" ><i class="bi bi-plus-circle-fill "></i></button>
+                     </div>
+                     <div class="buton-editar">
+                        <button class="btn btn-danger"  data-bs-target="#AcercaForm" (click)="EliminarAcercaDe(i)"><i class="bi bi-trash3"></i></button>
+                     </div>
+                   </div>
+                  </div>
+                </ul>
+            
+              </div>      
+    </div>    
+</article>  

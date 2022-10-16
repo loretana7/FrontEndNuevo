@@ -1,0 +1,93 @@
+<article class="card"> 
+  <div class="modal fade" id="capacidadesForm" tabindex="-1" aria-labelledby="capacidadesFormLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="capacidadesFormLabel"> Capacidades</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Cerrar"></button>
+        </div>
+        <div class="modal-body">
+          <form [formGroup]="capacidadesForm" (ngSubmit)="onSubmit()">
+
+            <input type="hidden" name="id" formControlName="id" >
+            <div class="row mb-3">
+              <label for="nombre" class=" col-form-label">Nombre</label>
+              <div class="col-sm-10">
+                  <input type="text" name="nombre" formControlName="nombre" class="form-control"  [ngClass]="{'is-invalid': Nombre?.errors && Nombre?.touched, 'is-valid': !Nombre?.errors && Nombre?.touched }"  required>
+                  <span *ngIf="capacidadesForm.get('nombre')?.errors?.['minlength'] && Nombre?.touched 
+                    "class =" text-danger"> al menos 3 digitos, porfavor</span> 
+                    
+              </div>
+            </div>
+            <div class="row mb-3">
+              <label for="porcentaje" class=" col-form-label">Porcentaje</label>
+              <div class="col-sm-10">
+                 <input type="text" name="porcentaje" formControlName="porcentaje" class="form-control"   [ngClass]="{'is-invalid': Porcentaje?.errors && Porcentaje?.touched, 'is-valid': !Porcentaje?.errors && Porcentaje?.touched }" required  pattern>
+                  <span *ngIf="capacidadesForm.get('porcentaje')?.errors?.['pattern'] && Porcentaje?.touched || capacidadesForm.get('porcentaje')?.errors?.['min'] || capacidadesForm.get('porcentaje')?.errors?.['max']
+                  "class =" text-danger"> solo permite numeros del 0 al 100 y no se permiten letras</span> 
+              </div>  
+            </div>
+           <!-- </div> aca creo debe ir un cierre div-->
+            <div class="row mb-3">
+              <label for="descripcion" class=" col-form-label">Descripcion</label>
+               <div class="col-sm-10">
+                  <input type="text" name="descripcion" formControlName="descripcion" class="form-control" >
+                  
+              </div>
+            </div>
+            <div class="text-center">
+              <button type="button" class="btn btn-secondary me-4 " data-bs-dismiss="modal">Cerrar</button>
+              <button [disabled]="capacidadesForm.invalid" type="submit" class="btn btn-primary">Guardar cambios</button>
+            </div>
+
+          </form>
+        </div>
+      </div>
+    </div>
+   </div>
+ <div class="data-container">   
+      <div class="card-title">
+          <h1 > Capacidades</h1>
+      </div>
+  
+     <!-- aca voy a poner la barra de progreso -->
+     <div class = "container">
+      <div *ngIf="Vacia()==true"  class="button-editar">
+        <div  class="buton-editar">
+          <button class="btn btn-success" data-bs-toggle="modal" data-bs-target="#capacidadesForm" (click)="NuevaCapacidad()"  ><i class="bi bi-plus-circle-fill ">aun no hay capacidades existentes</i></button>
+      </div>
+      </div>
+        <ul *ngFor="let capacidades of capacidadesList ; let i = index">
+     
+          <div class="row" class="card-lista  ">
+            <div class="card-img-top" >
+              <img class="algo "  >
+              <div class="col-10">
+                <h6 class="mr-3" ><b>"{{capacidades.nombre}}" </b> </h6>
+                <h5 class="mr-3" > <b>{{capacidades.descripcion}}</b></h5>
+                <div class="progress">
+                  <div class="progress-bar progress-bar-striped progress-bar-animated bg-info" role="progressbar" style="width: {{capacidades.porcentaje}}%" aria-valuenow="80" aria-valuemin="0" aria-valuemax="100"><font color="black"> {{capacidades.porcentaje}}%</font></div>
+               </div> 
+             </div>
+        
+             <div *ngIf="isUserLogged" class="button-editar">
+             <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#capacidadesForm" (click)="EditarCapacidades(i)" ><i class="bi bi-pencil-fill"></i></button>
+           </div>
+        </div>    
+        
+           
+          <div *ngIf="isUserLogged" class="data-control">
+               
+             <div  class="buton-editar">
+                 <button class="btn btn-success" data-bs-toggle="modal" data-bs-target="#capacidadesForm" (click)="NuevaCapacidad()" ><i class="bi bi-plus-circle-fill "></i></button>
+            </div>
+            <div class="buton-editar">
+                <button class="btn btn-danger"  data-bs-target="#capacidadesForm" (click)="EliminarCapacidades(i)"><i class="bi bi-trash3"></i></button>
+            </div>
+         </div>
+        </div>
+       </ul>
+     </div>
+   <!-- aca voy a poner la barra de progreso -->
+   </div>   <!-- para copiar la estructura -->
+  </article>

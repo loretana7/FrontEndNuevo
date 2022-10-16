@@ -1,0 +1,119 @@
+<article class="card">
+    <!--para el modal de modificar usare esta estructura-->
+  <div class="modal fade" id="educacionForm" tabindex="-1" aria-labelledby="educacionFormLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="educacionFormLabel"> Educacion</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Cerrar"></button>
+        </div>
+        <div class="modal-body">
+          <form [formGroup]="educacionForm" (ngSubmit)="onSubmit()">
+
+            <input type="hidden" name="id" formControlName="id" >
+            <div class="row mb-3">
+              <label for="nivel" class=" col-form-label">Nivel</label>
+              <div class="col-sm-10">
+                  <input type="text" name="nivel" formControlName="nivel" class="form-control"  [ngClass]="{'is-invalid': Nivel?.errors && Nivel?.touched, 'is-valid': !Nivel?.errors && Nivel?.touched }"  required>
+                  <span *ngIf="educacionForm.get('nivel')?.errors?.['minlength'] && Nivel?.touched
+                    "class =" text-danger"> al menos 5 digitos, porfavor</span> 
+              </div>
+            </div>
+            <div class="row mb-3">
+              <label for="escuela" class=" col-form-label">Escuela</label>
+              <div class="col-sm-10">
+                 <input type="text" name="escuela" formControlName="escuela" class="form-control"   [ngClass]="{'is-invalid': Escuela?.errors && Escuela?.touched, 'is-valid': !Escuela?.errors && Escuela?.touched }" required >
+                  <span *ngIf="educacionForm.get('escuela')?.errors?.['minlength'] && Escuela?.touched
+                  "class =" text-danger"> al menos 5 digitos, porfavor</span> 
+              </div>  
+            </div>
+           <!-- </div> aca creo debe ir un cierre div-->
+            <div class="row mb-3">
+              <label for="direccion" class=" col-form-label">Direccion</label>
+               <div class="col-sm-10">
+                  <input type="text" name="direccion" formControlName="direccion" class="form-control"  [ngClass]="{'is-invalid': Direccion?.errors && Direccion?.touched, 'is-valid': !Direccion?.errors && Direccion?.touched }"  required>
+                   <span *ngIf="educacionForm.get('direccion')?.errors?.['minlength'] && Direccion?.touched
+                   "class =" text-danger"> al menos 5 digitos, porfavor</span> 
+              </div>
+            </div>
+            <div class="row mb-3">
+              <label for="titulo" class=" col-form-label">Titulo</label>
+                <div class="col-sm-10">
+                  <input type="text" name="titulo" formControlName="titulo" class="form-control"   [ngClass]="{'is-invalid': Titulo?.errors && Titulo?.touched, 'is-valid': !Titulo?.errors && Titulo?.touched }" required >
+                  <span *ngIf="educacionForm.get('titulo')?.errors?.['minlength'] && Titulo?.touched
+                  "class =" text-danger"> al menos 5 digitos, porfavor</span> 
+               </div>
+            </div>
+            <div class="mb-3">
+              <label for="img" class=" col-form-label">Imagen</label>
+               <div class="col-sm-10">
+                 <input type="text" name="img" formControlName="img" class="form-control" >
+               </div>
+            </div>
+            
+            <div class="mb-3">
+              <label for="desde" class=" col-form-label">Desde</label>
+               <div class="col-sm-10">
+                  <input type="text" name="desde" formControlName="desde" class="form-control"  [ngClass]="{'is-invalid': Desde?.errors && Desde?.touched, 'is-valid': !Desde?.errors && Desde?.touched }" required>
+                   <span *ngIf="educacionForm.get('desde')?.errors?.['minlength'] && Desde?.touched
+                  "class =" text-danger"> al menos 2 digitos, porfavor</span> 
+                </div>
+             </div>
+            
+            <div class="mb-3">
+              <label for="hasta" class="col-form-label">hasta</label>
+                <div class="col-sm-10">
+                  <input type="text" name="hasta" formControlName="hasta" class="form-control"   [ngClass]="{'is-invalid': Hasta?.errors && Hasta?.touched, 'is-valid': !Hasta?.errors && Hasta?.touched }" required>
+                  <span *ngIf="educacionForm.get('hasta')?.errors?.['minlength'] && Hasta?.touched
+                   "class =" text-danger"> al menos 2 digitos, porfavor</span> 
+               </div>
+            </div>
+            <div class="text-center">
+              <button type="button" class="btn btn-secondary me-4 " data-bs-dismiss="modal">Cerrar</button>
+              <button [disabled]="educacionForm.invalid" type="submit" class="btn btn-primary">Guardar cambios</button>
+            </div>
+
+          </form>
+        </div>
+      </div>
+    </div>
+   </div>
+ <div class="data-container">   
+    <div class="card-title">
+      <h1 > Educación</h1>
+    </div>
+      <div class="data-container" >
+        <div *ngIf="Vacia()==true" class="button-editar">
+          <div  class="buton-editar">
+            <button class="btn btn-success" data-bs-toggle="modal" data-bs-target="#educacionForm" (click)="NuevaEducacion()"  ><i class="bi bi-plus-circle-fill ">aun no hay ninguna educacion cargada</i></button>
+        </div>
+        </div>
+        <ul *ngFor="let educacion of educacionList ; let i = index">
+               <div class="row" class="card-lista  ">
+                   <div class="card-img-top" >
+                     <img class="img-fluid " src="/assets/images/{{educacion.img}}" width="100" height="100" alt="" class="border border-info border-5 rounded-circle " >
+                     <div class="col-10">
+                        <h4 class="mr-3" ><b>{{educacion.nivel}} :"{{educacion.escuela}}" </b> </h4>
+                        <h5 class="mr-3" > <b>Titulo: {{educacion.titulo}}</b></h5>
+                        <span class="mr-3" >Lugar: {{educacion.direccion}}</span>
+                        <h5 class="mr-3"> <b>Entre: {{educacion.desde}}-{{educacion.hasta}}</b></h5>
+                      </div> 
+                    <div *ngIf="isUserLogged" class="button-editar">
+                    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#educacionForm" (click)="EditarEducacion(i)" ><i class="bi bi-pencil-fill"></i></button>
+                  </div>
+               </div>
+  
+          <div *ngIf="isUserLogged" class="data-control">
+              <div  class="buton-editar">
+                 <button class="btn btn-success" data-bs-toggle="modal" data-bs-target="#educacionForm" (click)="NuevaEducacion()" ><i class="bi bi-plus-circle-fill "></i></button>
+             </div>
+             <div class="buton-editar">
+                <button class="btn btn-danger"  data-bs-target="#educacionForm" (click)="EliminarEducacion(i)"><i class="bi bi-trash3"></i></button>
+             </div>
+           </div>
+          </div>
+        </ul>
+    
+      </div>
+ </div>
+</article>

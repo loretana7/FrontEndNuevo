@@ -1,0 +1,31 @@
+<nav class="navbar navbar-expand-lg navbar-dark bg-primary" >
+    <div class="container-fluid">
+      <a class="navbar-brand"  href="https://www.argentina.gob.ar/produccion/transformacion-digital-y-economia-del-conocimiento/argentina-programa" target="blank"><img [src]="miPortfolio.img1" whidth="60" height="60"></a>
+  
+      <a class="navbar-brand" href="https://www.argentina.gob.ar/produccion/argentina-programa/segunda-etapa" target="blank"><img [src]="miPortfolio.img2" whidth="60" height="60"></a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      
+        <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+         
+          <li class="nav-item ms-auto">
+            <a class="nav-link active"  aria-current="page" href="https://www.facebook.com/lorena.benitez.37669"  target="blank"><i class="fab fa-facebook"></i></a>
+          </li>
+          <li class="nav-item " >
+            <a class="nav-link" [href] ="miPortfolio.notenemos" target="blank"><i class="fab fa-twitter"></i></a>
+          </li>
+          <li class="nav-item ">
+            <a class="nav-link" href="https://www.instagram.com/lore_sol_benitez/" target="blank"><i class="fab fa-instagram-square"></i></a>
+          </li>
+        </ul>
+      
+         <!--<input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">--> 
+         <!-- <button class="btn btn-outline-success" type="submit" routerLink="/login">Login</button>-->
+          <button *ngIf="!isUserLogged" class="btn btn-outline-success my-2 my-sm-0"  routerLink="/login">Login</button>
+          <button *ngIf="isUserLogged" class="btn btn-outline-success my-2 my-sm-0"  routerLink="/logout" (click)="logout()">Logout</button>
+        
+      </div>
+    </div>
+  </nav>

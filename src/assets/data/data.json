@@ -1,0 +1,106 @@
+{   
+  "img1": "./assets/images/ArgentinaPrograma.png",
+  "img2": "./assets/images/Ministerio.png",
+    "supertitulo":"Mi primer Portfolio Web",
+    "nombre" : "Lorena Soledad Benitez",
+    "perfil": "./assets/images/perfil.jpg" ,
+    "img": "./assets/images/perfil.jpg",
+    "soy" : "Estudiante en Sistemas de informacion",
+    "mail": " loretana7@gmail.com",
+    "titulo": "Mi Perfil",
+    "edad":"32 ",
+
+    "company" : {
+      "name": "por ahi lo uso para algo, lo dejo por las dudas",
+      "img": "",
+      "url" : "#"
+    },
+    "ubication" : "Buenos Aires (Argentina) ",
+    "about": "todabia no lo voy a usar pero lo dejo por las dudas",
+    "experiencias": [
+        {
+            "posicion": "ayudante voluntaria",
+            "lugar": " Biblioteca bartolome mitre",
+            "img": "#",
+            "horario": "4 horas semanales",
+            "desde": "marzo 2007",
+            "hasta": "diciembre 2007"
+        
+          },
+      {
+        "posicion": "venta al publico",
+        "lugar": " Local de ropa para chicos PITU ",
+        "img": "#",
+        "horario": "part-time",
+        "desde": "mar 2008",
+        "hasta": "2014"
+    
+      }
+    ],
+    "educacion": [
+      { "id":1,
+        "nivel":"Primario:",
+        "escuela": "Escuela Nro 39 antoña cabral de callait",
+
+        "img": "./assets/images/39.webp", 
+        "direccion": "Grandbourg Malvinas Argentinas Bs As",
+        
+        "desde": "1995",
+        "hasta": "2013"
+      },
+
+      {"id":2,
+        "nivel":"secundario:",
+        "escuela": "Escuela Media Nro 8 TRATADO DEL PILAR",
+        "direccion": "Pilar pelagio Baltazar Luna 1200 Buenos Aires",
+        "img": "./assets/images/tratado.jpg", 
+        "titulo": "Humanidades y ciencias sociales",
+        "desde": "2003",
+        "hasta": "2007"
+      },
+      {"id":3,
+          "nivel": "universitario",
+        "escuela": "Universidad Nacional de Lujan",
+        "direccion": " Ruta 5 y Av. Constitucion Lujan",
+        "titulo": "sistemas de informacion",
+        "img": " ./assets/images/lujan.png",
+        "desde": "2009",
+        "hasta": "actualidad"
+      }
+    ],
+    "capcacidades": [
+      {
+        "nombre": "Pascal",
+        "progress": "50%"
+    },
+          {
+            "nombre": "delfhy",
+            "progress": "60%"
+          },
+          {
+            "nombre": "java",
+            "progress": "55%"
+          }
+],
+     
+     
+    "proyectos": [
+      {
+        "nombre": "Mi portfolio web",
+        "descripcion":"curso de argentina programa segundo nivel",
+        "fecha": "2021-2022"
+      }
+     
+    ],
+
+    "acerca": [
+      {
+        "nombre": "Programador full stack developer jr",
+        "descripcion":"aun no se que poner",
+        "fecha": "2022"
+      }
+     
+    ],
+
+ "notenemos":"./assets/images/notenemos.html"
+}

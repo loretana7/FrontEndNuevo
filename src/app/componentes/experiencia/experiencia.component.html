@@ -1,0 +1,118 @@
+<article class="card">
+      <!--para el modal de modificar usare esta estructura-->
+      <div class="modal fade" id="experienciasForm" tabindex="-1" aria-labelledby="experienciasFormLabel" aria-hidden="true">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="experienciasFormLabel"> Experiencias</h5>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Cerrar"></button>
+            </div>
+            <div class="modal-body">
+              <form [formGroup]="experienciasForm" (ngSubmit)="onSubmit()">        
+                <input type="hidden" name="id" formControlName="id" >
+                <div class="row mb-3">
+                  <label for="posicion" class=" col-form-label">Posicion</label>
+                  <div class="col-sm-10">
+                      <input type="text" name="posicion" formControlName="posicion" class="form-control"  [ngClass]="{'is-invalid': Posicion?.errors && Posicion?.touched, 'is-valid': !Posicion?.errors && Posicion?.touched }"  required>
+                      <span *ngIf="experienciasForm.get('posicion')?.errors?.['minlength'] && Posicion?.touched
+                        "class =" text-danger"> al menos 5 digitos, porfavor</span> 
+                  </div>
+                </div>
+                <div class="row mb-3">
+                  <label for="lugar" class=" col-form-label">Lugar</label>
+                  <div class="col-sm-10">
+                     <input type="text" name="lugar" formControlName="lugar" class="form-control"   [ngClass]="{'is-invalid': Lugar?.errors && Lugar?.touched, 'is-valid': !Lugar?.errors && Lugar?.touched }" required >
+                      <span *ngIf="experienciasForm.get('lugar')?.errors?.['minlength'] && Lugar?.touched
+                      "class =" text-danger"> al menos 5 digitos, porfavor</span> 
+                  </div>  
+                </div>
+               <!-- </div> aca creo debe ir un cierre div-->
+                <div class="row mb-3">
+                  <label for="img" class=" col-form-label">Img</label>
+                   <div class="col-sm-10">
+                      <input type="text" name="img" formControlName="img" class="form-control" >
+                      
+                  </div>
+                </div>
+                <div class="row mb-3">
+                  <label for="direccion" class=" col-form-label">Direccion</label>
+                    <div class="col-sm-10">
+                      <input type="text" name="direccion" formControlName="direccion" class="form-control"   [ngClass]="{'is-invalid': Direccion?.errors && Direccion?.touched, 'is-valid': !Direccion?.errors && Direccion?.touched }" required >
+                      <span *ngIf="experienciasForm.get('direccion')?.errors?.['minlength'] && Direccion?.touched
+                      "class =" text-danger"> al menos 5 digitos, porfavor</span> 
+                   </div>
+                </div>
+                <div class="mb-3">
+                  <label for="horario" class=" col-form-label">Horario</label>
+                   <div class="col-sm-10">
+                     <input type="text" name="horario" formControlName="horario" class="form-control" >
+                   </div>
+                </div>
+                
+                <div class="mb-3">
+                  <label for="desde" class=" col-form-label">Desde</label>
+                   <div class="col-sm-10">
+                      <input type="text" name="desde" formControlName="desde" class="form-control"  [ngClass]="{'is-invalid': Desde?.errors && Desde?.touched, 'is-valid': !Desde?.errors && Desde?.touched }" required>
+                       <span *ngIf="experienciasForm.get('desde')?.errors?.['minlength'] && Desde?.touched
+                      "class =" text-danger"> al menos 2 digitos, porfavor</span> 
+                    </div>
+                 </div>
+                
+                <div class="mb-3">
+                  <label for="hasta" class="col-form-label">hasta</label>
+                    <div class="col-sm-10">
+                      <input type="text" name="hasta" formControlName="hasta" class="form-control"   [ngClass]="{'is-invalid': Hasta?.errors && Hasta?.touched, 'is-valid': !Hasta?.errors && Hasta?.touched }" required>
+                      <span *ngIf="experienciasForm.get('hasta')?.errors?.['minlength'] && Hasta?.touched
+                       "class =" text-danger"> al menos 2 digitos, porfavor</span> 
+                   </div>
+                </div>
+                <div class="text-center">
+                  <button type="button" class="btn btn-secondary me-4 " data-bs-dismiss="modal">Cerrar</button>
+                  <button [disabled]="experienciasForm.invalid" type="submit" class="btn btn-primary">Guardar cambios</button>
+                </div>
+    
+              </form>
+            </div>
+          </div>
+        </div>
+       </div>
+  <div class="data-container">   
+    <div class="card-title">
+      <h1 > Experiencias</h1>
+    </div>
+      <div class="data-container" >
+        <div *ngIf="Vacia()==true" class="button-editar">
+          <div  class="buton-editar">
+            <button class="btn btn-success" data-bs-toggle="modal" data-bs-target="#experienciasForm" (click)="NuevaExperiencia()"  ><i class="bi bi-plus-circle-fill ">aun no hay experiencias cargadas</i></button>
+        </div>
+        </div>
+        <ul *ngFor="let experiencia of experienciasList ; let i = index">
+               <div class="row" class="card-lista  ">
+                   <div class="card-img-top" >
+                     <img class="img-fluid " src="/assets/images/{{experiencia.img}}" width="100" height="100" alt="" class="border border-info border-5 rounded-circle " >
+                     <div class="col-10">
+                        <h4 class="mr-3" ><b>"" </b> </h4>
+                        <h5 class="mr-3" > <b>{{experiencia.lugar}}, {{experiencia.desde}}- {{experiencia.hasta}} </b></h5>
+                        <span class="mr-3" >Lugar:{{experiencia.direccion}}</span>
+                        <h5 class="mr-3"> <b>horario:{{experiencia.horario}},</b></h5>
+                      </div> 
+                    <div *ngIf="isUserLogged" class="button-editar">
+                    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#experienciasForm" (click)="EditarExperiencia(i)" ><i class="bi bi-pencil-fill"></i></button>
+                  </div>
+               </div>
+  
+          <div *ngIf="isUserLogged" class="data-control">
+              <div  class="buton-editar">
+                 <button class="btn btn-success" data-bs-toggle="modal" data-bs-target="#experienciasForm" (click)="NuevaExperiencia()" ><i class="bi bi-plus-circle-fill "></i></button>
+             </div>
+             <div class="buton-editar">
+                <button class="btn btn-danger"  data-bs-target="#experienciasForm" (click)="EliminarExperiencia(i)"><i class="bi bi-trash3"></i></button>
+             </div>
+           </div>
+          </div>
+        </ul>
+    
+      </div>
+ </div>
+
+      </article>

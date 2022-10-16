@@ -1,0 +1,27 @@
+<div class="container mt-3">
+<form [formGroup]="form" (ngSubmit)="onSubmit($event)">
+<div class="row mb-3">
+    <label for="email" class="col-sm-2 col-form-label">Email </label>
+    <div class="col-sm-10">
+    <input type="text" placeholder="ingrese el email" name="email" formControlName = "email" class="form-control" required [ngClass]="{'is-invalid': Email?.errors && Email?.touched, 'is-valid': !Email?.errors && Email?.touched }">
+    <div *ngIf="Email?.errors && Email?.touched">
+        <span *ngIf ="Email?.hasError('required')" class ="text-danger">El email es necesario</span>
+        <span *ngIf ="Email?.hasError('email')" class ="text-danger">No es un email valido</span>
+    
+    </div>
+</div>
+</div>
+ 
+  <div class=" row mb-3">
+    <label for="password" class="col-sm-2 col-form-label">Password</label>
+    <div class="col sm-10">
+       <input type="password" placeholder=" contraseña" name="password" formControlName ="password">
+    </div>  
+  </div>
+  <div *ngIf="loginError" class="text-danger"> usted no es un usuario valido en mi base de datos</div>
+<button [disabled]="form.invalid" type="submit" class="btn btn-primary me-3"> iniciar sesion </button><!--onsubmit es un tipo de bainin de eventos-->
+<button routerLink="/home" class="btn btn-primary"> cancelar </button>
+</form>
+</div>
+
+

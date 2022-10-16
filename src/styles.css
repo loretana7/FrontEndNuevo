@@ -1,1 +1,75 @@
-/* You can add global styles to this file, and also import other style files */
+*{
+    font-size: 16pt;
+font-family: 'Courier New', Courier, monospace;
+}
+
+article .card-body .container{
+    font-size: 25pt;
+    font-family: 'Times New Roman', Times, serif;
+}
+section header .card-body {
+    background: linear-gradient(135deg,#0087DA,#cedc32,#02f380,#161569,#5a4894,#95a,#FF7cae);
+    background-size: 450%;
+}
+section header  .card{
+    background: linear-gradient(135deg,#0087DA,#cedc32,#02f380,#161569,#5a4894,#95a,#FF7cae);
+    background-size: 450%;
+}
+
+ 
+
+ section article{
+    background: linear-gradient(135deg,#0087DA,#cedc32,#02f380,#161569,#5a4894,#95a,#FF7cae);
+    background-size: 450%;
+
+}
+ul{
+    font-weight: bold;
+}
+ul li {
+    margin-bottom: 0.5rem;
+}
+
+button.add-button{
+
+    background-color: rebeccapurple;
+}
+.footer{
+    background-color: aqua;
+    padding: 0.5rem;
+}
+.card-img-top{
+    display: flex;
+}
+.card .card-img-top{
+    flex:5
+}
+.card .card-img-top .card-title{
+    flex:5
+}
+.card .card-text{
+    flex:10;
+}
+.card-img-top p{
+    flex :7;
+}
+
+.card-title h1{
+    flex:7;
+    }
+.card-title{
+    display: flex; 
+}
+.card-title h2{
+flex:10;
+}
+.card-title .title-button{
+    flex: 1;
+
+}
+
+
+.card-body{
+    display: flex;
+}
+
